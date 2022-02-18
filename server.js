@@ -32,6 +32,11 @@ app.get("/", ((req, res) => {
 
     res.sendFile(path.resolve(__dirname, './views/index.html'))
 }))
+app.get("/form", ((req, res) => {
+    // res.render('index.html');
+
+    res.sendFile(path.resolve(__dirname, './views/form.html'))
+}))
 
 app.listen(PORT, ()=> {
     console.log("server starting...port:" + PORT)
