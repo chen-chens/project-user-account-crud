@@ -1,3 +1,5 @@
+
+
 const express = require("express");
 const app = express();
 
@@ -25,18 +27,12 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended: false}));
 
 // set view engine
-app.set("view engine", "ejs");
+// app.set("view engine", "ejs");
+app.engine("html", require("express-art-template"));
 
-app.get("/", ((req, res) => {
-    // res.render('index.html');
+// load routes
+app.use('/', require("./server/routes/router"));
 
-    res.sendFile(path.resolve(__dirname, './views/index.html'))
-}))
-app.get("/form", ((req, res) => {
-    // res.render('index.html');
-
-    res.sendFile(path.resolve(__dirname, './views/form.html'))
-}))
 
 app.listen(PORT, ()=> {
     console.log("server starting...port:" + PORT)
