@@ -12,6 +12,10 @@ const PORT = process.env.PORT||8000;
 const morgan = require("morgan");
 app.use(morgan("tiny"));
 
+// mongoDB connection
+const connectDB = require("./server/database/connection");
+connectDB();
+
 /* 
     設置靜態檔案目錄
     app.use("自定義虛擬起始路徑", express.static("目前folder路徑"));  ---> http://localhost:5500/自定義虛擬起始路徑/目前folder路徑下的資料

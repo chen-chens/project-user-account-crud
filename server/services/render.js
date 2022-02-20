@@ -4,21 +4,21 @@ let userInfo = [
         id: 1,
         name: "Joanna",
         email: "joanna@gmail.com",
-        phone: 0912399999,
+        phone: "0912399999",
         level: "VVIP"
     },
     {
         id: 2,
         name: "David",
         email: "david@gmail.com",
-        phone: 0988888888,
+        phone: "0988888888",
         level: "VIP"
     },
     {
         id: 3,
         name: "Bob",
         email: "bob@gmail.com",
-        phone: 0912887999,
+        phone: "0912887999",
         level: "General"
     }
 ];
