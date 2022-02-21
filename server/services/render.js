@@ -1,31 +1,15 @@
-
-let userInfo = [
-    {
-        id: 1,
-        name: "Joanna",
-        email: "joanna@gmail.com",
-        phone: "0912399999",
-        level: "VVIP"
-    },
-    {
-        id: 2,
-        name: "David",
-        email: "david@gmail.com",
-        phone: "0988888888",
-        level: "VIP"
-    },
-    {
-        id: 3,
-        name: "Bob",
-        email: "bob@gmail.com",
-        phone: "0912887999",
-        level: "General"
-    }
-];
-
+const axios = require("axios");
 
 exports.rootPage = (req, res) => {
-    res.render('index.html', { userInfo: userInfo});
+    axios
+    .get("http://localhost:5500/api/users")
+    .then(response => {
+        console.log("data: ", response);
+        res.render('index.html', { userInfo: response.data});
+
+    }).catch(err => {
+        res.send(err.message)
+    })
 };
 
 exports.addMember = (req, res) => {
