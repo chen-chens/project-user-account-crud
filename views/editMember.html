@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="./css/style.css" rel="stylesheet">
-    <title>addMember</title>
+    <title>editMember</title>
 </head>
 <body>
     <header class="header">
@@ -18,41 +18,48 @@
                 <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">新增會員</li>
+                    <li class="breadcrumb-item active" aria-current="page">編輯會員</li>
                 </ol>
                 </nav>
-                <form action="/api/users" method="POST"> <!-- Define form sending request to server when user clicks submit button-->
+                {{if editUser}}
+                <form method="POST" id="editform"> <!-- Define form sending request to server when user clicks submit button-->
+                    <input type="hidden" name="_method" value="PUT">
+                    <input type="hidden" name="_id" value="{{editUser._id}}">
+
                     <div class="mb-3">
                         <label for="name" class="form-label">姓名</label>
-                        <input type="text" class="form-control" id="name" name="name" required minlength="2" maxlength="15"> <!-- attr. name as form value -->
+                        <input type="text" class="form-control" id="name" name="name" required minlength="2" maxlength="15" value="{{editUser.name}}"> <!-- attr. name as form value -->
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required> 
+                        <input type="email" class="form-control" id="email" name="email" required value="{{editUser.email}}"> 
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone</label>
-                        <input type="number" class="form-control" id="phone" name="phone" required> 
+                        <input type="number" class="form-control" id="phone" name="phone" required value="{{editUser.phone}}"> 
                     </div>
                     <div class="mb-3">
                         <div class="form-label">Level</div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="level" id="General" value="General">
+                            <input class="form-check-input" type="radio" name="level" id="General" value="General" {{editUser.level === 'General' ? 'checked': ''}}>
                             <label class="form-check-label" for="General">Genaral</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="level" id="VIP" value="VIP">
+                            <input class="form-check-input" type="radio" name="level" id="VIP" value="VIP" {{editUser.level === 'VIP' ? 'checked': ''}}>
                             <label class="form-check-label" for="VIP">VIP</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="level" id="VVIP" value="VVIP">
+                            <input class="form-check-input" type="radio" name="level" id="VVIP" value="VVIP" {{editUser.level === 'VVIP' ? 'checked': ''}}>
                             <label class="form-check-label" for="VVIP">VVIP</label>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary col-12 mx-auto">Submit</button>
+                    <button type="submit" class="btn btn-primary col-12 mx-auto">Save</button>
                 </form>
+                {{/if}}
             </div>
         </div>
     </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="../js/editMember.js"></script>
 </body>
 </html>

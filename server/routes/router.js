@@ -6,6 +6,8 @@ const route = express.Router();
 const services = require("../services/render");
 route.get("/", services.rootPage);
 route.get("/addMember", services.addMember);
+route.get("/editMember", services.editMember);
+
 
 // API
 const controller = require("../controller/controller");

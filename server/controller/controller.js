@@ -1,5 +1,6 @@
 const Userdb = require('../model/model');
 
+
 /* 撰寫： crud API from mongoDB */ 
 
 // get all users or retrieve a single user 
@@ -57,7 +58,8 @@ exports.create = (req, res) => {
     .then(data => {
         res
         .status(200)
-        .send(data)
+        // .send(data)
+        .redirect('/')
     }).catch(err => {
         res
         .status(500)
@@ -68,16 +70,17 @@ exports.create = (req, res) => {
 // update user data
 exports.update = (req, res) => {
     if(!req.body){
+        
         res
         .status(400)
-        .send({message: "Target Id is required!"})
+        .send({message: "Request body is empty!"})
 
         return
     }
 
     const id = req.params.id;
     Userdb
-    .findByIdAndUpdate(id, req.body, {useFindAndModify: false})
+    .findByIdAndUpdate(id, req.body, {new:true})
     .then(data => {
         if(!data){
             res

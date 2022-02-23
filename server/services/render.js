@@ -4,7 +4,6 @@ exports.rootPage = (req, res) => {
     axios
     .get("http://localhost:5500/api/users")
     .then(response => {
-        console.log("data: ", response);
         res.render('index.html', { userInfo: response.data});
 
     }).catch(err => {
@@ -14,5 +13,15 @@ exports.rootPage = (req, res) => {
 
 exports.addMember = (req, res) => {
     res.render('addMember.html');
-    // res.sendFile(path.resolve(__dirname, './views/addMember.html'))
+};
+
+
+exports.editMember = (req, res) => {
+    axios
+    .get("http://localhost:5500/api/users", {params: {id: req.query.id}})
+    .then(response => {
+        res.render('editMember.html', {editUser: response.data});
+    }).catch(err => {
+        res.send(err.message)
+    })
 };

@@ -29,6 +29,7 @@ app.use('/js', express.static(path.resolve(__dirname, "public/js")));
 // body-parser
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 // set view engine
 // app.set("view engine", "ejs");
